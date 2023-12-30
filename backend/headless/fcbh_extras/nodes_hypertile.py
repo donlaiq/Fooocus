@@ -2,7 +2,7 @@
 
 import math
 from einops import rearrange
-import random
+import secrets
 
 def random_divisor(value: int, min_value: int, /, max_options: int = 1, counter = 0) -> int:
     min_value = min(min_value, value)
@@ -12,8 +12,8 @@ def random_divisor(value: int, min_value: int, /, max_options: int = 1, counter 
 
     ns = [value // i for i in divisors[:max_options]]  # has at least 1 element
 
-    random.seed(counter)
-    idx = random.randint(0, len(ns) - 1)
+    secrets.SystemRandom().seed(counter)
+    idx = secrets.SystemRandom().randint(0, len(ns) - 1)
 
     return ns[idx]
 

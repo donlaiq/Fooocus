@@ -7,12 +7,12 @@ import hashlib
 import traceback
 import math
 import time
-import random
 
 from PIL import Image, ImageOps
 from PIL.PngImagePlugin import PngInfo
 import numpy as np
 import safetensors.torch
+import secrets
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "fcbh"))
 
@@ -1322,7 +1322,7 @@ class PreviewImage(SaveImage):
     def __init__(self):
         self.output_dir = folder_paths.get_temp_directory()
         self.type = "temp"
-        self.prefix_append = "_temp_" + ''.join(random.choice("abcdefghijklmnopqrstupvxyz") for x in range(5))
+        self.prefix_append = "_temp_" + ''.join(secrets.SystemRandom().choice("abcdefghijklmnopqrstupvxyz") for x in range(5))
 
     @classmethod
     def INPUT_TYPES(s):
